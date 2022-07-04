@@ -1,0 +1,9 @@
+WIDTH  = 600 
+HEIGHT = 300
+
+COLOR = {
+  'WHITE': (255,255,255),
+  'BLACK': (0,0,0)
+}
+
+FPS = 60
