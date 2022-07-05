@@ -1,8 +1,8 @@
 import pygame
-import gol_modules.gol_params as p
+import gol_modules.params as p
+pygame.display.set_caption('Demo - Game of life')
 
 WIN = pygame.display.set_mode((p.WIDTH, p.HEIGHT))
-pygame.display.set_caption('Demo - Game of life')
 
 # Check if quit event exists
 def handle_event_quit(pygame):
@@ -14,7 +14,13 @@ def handle_event_quit(pygame):
 
 def draw_window():
   WIN.fill(p.COLOR['WHITE'])
+  draw_grid()
   pygame.display.update()
+
+def draw_grid():
+  rect = pygame.Rect(100, 100, 20, 30)
+  pygame.draw.rect(WIN, p.COLOR["BLACK"], rect)
+  
   
 def main():
   clock = pygame.time.Clock()
@@ -22,7 +28,6 @@ def main():
     clock.tick() # make sure execution doesn't go over FPS(60)
     draw_window()
     
-  print(f"quit? {quit}")
   pygame.quit()
 
 if __name__ == "__main__":
