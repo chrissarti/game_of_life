@@ -1,5 +1,5 @@
 ##--------- PYGAME PARAMS
-WIDTH  = 600 
+WIDTH  = 500 
 HEIGHT = 300
 BORDER = 5
 
@@ -11,6 +11,10 @@ COLOR = {
 FPS = 60
 
 ##--------- CELLS
+CELL_DIMENSION = {
+  'WIDTH' : 10,
+  'HEIGHT': 10}
+
 CELL_STATE = {
   'DEAD': 0,
   'ALIVE': 1

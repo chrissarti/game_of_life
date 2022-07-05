@@ -1,7 +1,8 @@
 import pygame
 import gol_modules.params as p
-pygame.display.set_caption('Demo - Game of life')
+import gol_modules.cells as c
 
+pygame.display.set_caption('Demo - Game of life')
 WIN = pygame.display.set_mode((p.WIDTH, p.HEIGHT))
 
 # Check if quit event exists
@@ -24,11 +25,24 @@ def draw_grid():
   
 def main():
   clock = pygame.time.Clock()
+  MATRIX = c.create_binary_matrix(p.CELL_DIMENSION)
+  Original = MATRIX
+  GENERATION = 0
+  print(f"Generation {GENERATION}")
+  print(f"{MATRIX}\n")
+  
   while not handle_event_quit(pygame):
     clock.tick() # make sure execution doesn't go over FPS(60)
-    draw_window()
+    #draw_window()
+
+    c.loop_matrix(MATRIX)
+    GENERATION += 1
+    print(f"Generation {GENERATION}")
+    print(f"{MATRIX}\n")
     
   pygame.quit()
+
+  print(f"{Original}\n")
 
 if __name__ == "__main__":
   main()
