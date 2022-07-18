@@ -2,6 +2,7 @@ import numpy as np
 import itertools as it
 from gol_modules.params import CELL_STATE as CS
 from gol_modules.params import CELL_DIMENSION as CD
+import matplotlib.pyplot as plt
 
 # border of 1s, center of 0s
 def gen_matrix_ones(d):
@@ -74,22 +75,5 @@ def loop_matrix(matrix):
 def create_binary_matrix(d):
   return np.random.randint(2, size=(d['WIDTH'], d['HEIGHT']))
 
-
-
-"""
-def main():  
-  LENGTH, HEIGHT = (7, 7)
-  MATRIX = np.random.randint(2, size=(LENGTH, HEIGHT))
-  GENERATION = 0
-  print("Initial matrix:\n\n")
-  print(MATRIX, end="\n")
-  a = GENERATION
-  print(f"----------- Generation: {a}\n")  
-
-  for _ in it.repeat(None, 20):
-    loop_matrix(MATRIX)
-    print(MATRIX)
-    print(f"----------- Generation: {GENERATION}\n")
-    GENERATION += 1
-"""
-
+def simple_cell_automata(matrix):
+  pass
