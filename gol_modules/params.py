@@ -12,8 +12,8 @@ FPS = 60
 
 ##--------- CELLS
 CELL_DIMENSION = {
-  'WIDTH' : 10,
-  'HEIGHT': 10}
+  'WIDTH' : 20,
+  'HEIGHT': 20}
 
 CELL_STATE = {
   'DEAD': 0,

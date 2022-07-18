@@ -50,7 +50,7 @@ def count_neighbors(matrix, r,c):
     i = r+idx[0]; j = c+idx[1]
     #print(f"\tTRYING idx[{i}][{j}]...")
     if row_is_within_bounds(i) and col_is_within_bounds(j):
-      #print(f"\t\tFoundneighbor[{i}][{j}]:{matrix[i][j]}")
+      #print(f"\t\tFoundneighbor[{i}][{j}]")
       total_neighbors += matrix[i][j]
       
   return total_neighbors
@@ -62,10 +62,7 @@ def evaluate_cell(matrix,r,c):
       revive_cell(matrix,r,c)
       #print(f"\tREVIVED CELL[{r}][{c}]:{matrix[r][c]}")
   elif cell_is_alive(matrix,r,c):
-    if neighbors_count < 2:
-      kill_cell(matrix,r,c)
-      #print(f"\tKILLED CELL[{r}][{c}]:{matrix[r][c]}")
-    elif neighbors_count > 3:
+    if neighbors_count < 2 or neighbors_count > 3:
       kill_cell(matrix,r,c)
       #print(f"\tKILLED CELL[{r}][{c}]:{matrix[r][c]}")
 
