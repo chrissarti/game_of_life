@@ -5,21 +5,19 @@ from gol_modules.params import CELL_DIMENSION as CD
 import matplotlib.pyplot as plt
 
 # border of 1s, center of 0s
-def gen_matrix_ones(d):
-  x = np.ones((d['WIDTH'], d['HEIGHT']))
-  print("border of 1s, center of 0s:")
-  print(x)
-
-  #print("1 on the border and 0 inside in the array")
-  #x[2:-2,2:-2] = 0
-  #print(x)
-
+def gen_matrix_ones():
+  W = CD['WIDTH']; H = CD['HEIGHT']
+  
+  x = np.ones( (W, H) )
+  #x[2:-2, 2:-2] = 0
+  #x[6:-6, 6:-6] = 0
+  x[20:-12, 20:-12] = 0
   return x
 
-def gen_bin_matrix_rand(dimensions):
-  x = np.random.randint(2, size=(dimensions['WIDTH'], dimensions['HEIGHT']))
-  print("border of 1s, center of 0s")
-  print(x)  
+def gen_bin_matrix_rand():
+  W = CD['WIDTH']; H = CD['HEIGHT']
+  x = np.random.randint(2, size=(W, H) )
+  x[2:-2, 2:-2] = 0
   return x
 
 def kill_cell(matrix, r, c):
@@ -75,5 +73,6 @@ def loop_matrix(matrix):
 def create_binary_matrix(d):
   return np.random.randint(2, size=(d['WIDTH'], d['HEIGHT']))
 
-def simple_cell_automata(matrix):
-  pass
+def cellular_plot(matrix):
+  loop_matrix(matrix)
+  
