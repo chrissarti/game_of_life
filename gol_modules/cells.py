@@ -43,7 +43,7 @@ def count_neighbors(matrix, r,c):
   n_idx = [
     (-1,-1), (-1,0), (-1,1),
     (0,-1),          (0,1),
-    (1,-1),  (1,0),  (1,1)]  
+    (1,-1),  (1,0),  (1,1)]
   #print(f"cell[{r}][{c}]:{matrix[r][c]}:")
   for idx in n_idx:
     i = r+idx[0]; j = c+idx[1]
@@ -51,11 +51,15 @@ def count_neighbors(matrix, r,c):
     if row_is_within_bounds(i) and col_is_within_bounds(j):
       #print(f"\t\tFoundneighbor[{i}][{j}]")
       total_neighbors += matrix[i][j]
-      
   return total_neighbors
 
+def count_neighbors_ultra(matrix, r, c):
+  return np.sum(matrix[r-1:r+2, c-1:c+2]) - matrix[r,c]
+
 def evaluate_cell(matrix,r,c):
-  neighbors_count = count_neighbors(matrix,r,c)
+  #neighbors_count = count_neighbors(matrix,r,c)
+  neighbors_count = count_neighbors_ultra(matrix,r,c)
+  #print(f"neigh count: {neighbors_count}\n\n")
   if not cell_is_alive(matrix, r,c):
     if neighbors_count == 3:
       revive_cell(matrix,r,c)
@@ -66,13 +70,18 @@ def evaluate_cell(matrix,r,c):
       #print(f"\tKILLED CELL[{r}][{c}]:{matrix[r][c]}")
 
 def loop_matrix(matrix):
-  for id_r,row in enumerate(matrix):
-    for id_c, _ in enumerate(row):
-      evaluate_cell(matrix, id_r,id_c)
+  for row, col in np.ndindex(matrix.shape):
+    #neighbors_count = count_neighbors_ultra(matrix,r,c)
+    neighbors_count = np.sum(matrix[row-1:row+2, col-1:col+2]) - matrix[row,col]
+
+    # If cell is dead (0)
+    if not matrix[row][col] == CS['ALIVE']:
+      if neighbors_count == 3:
+        matrix[row][col] = 1
+    # If cell is alive (1)
+    elif matrix[row][col] == CS['ALIVE']:
+      if neighbors_count < 2 or neighbors_count > 3:
+        matrix[row][col] = 0
 
 def create_binary_matrix(d):
   return np.random.randint(2, size=(d['WIDTH'], d['HEIGHT']))
-
-def cellular_plot(matrix):
-  loop_matrix(matrix)
-  
